@@ -11,7 +11,7 @@ class Potential:
         self.n_max = n_max  # Upper sum boundary for Fourier coefficients. This should be large.
         self.xi = np.linspace(0, 1, self.N)
 
-        self.prod2 = 0  # A product that is used a lot in calculations.
+        self.prod2 = 0  # A product that will be used a lot in calculations. See calc_fCoeffs
 
         self.V0_space = V0(self.xi)
 
@@ -38,14 +38,22 @@ class Potential:
             self.V +=  self.fCoeffs[i] * sin_prod2[i].reshape(-1, 1) * sinh_prod2[i]
         self.V = self.V.T
 
-    def plot_potential(self):
+    def plot_potential_contour(self):
         fig, ax = plt.subplots()
         ax.contourf(self.xi, self.xi, self.V, 500)
-        plt.savefig('figqontour')
+        #plt.savefig('figqontour')
         plt.show()
 
+    #   TODO: Make a function that plots V(x,y) in 3D.
+
+def sine_func(x, Vc=1, m=2):
+    return Vc*np.sin(m*x*np.pi)
+
 def const(x, Vc=1):
-    return Vc*np.sin(2*x*np.pi)
+    return np.zeros(len(x))
+
+def e(x):
+    return np.exp(x)
 
 pot1 = Potential(const, 0.01, 100)
 pot1.calc_fCoeffs()

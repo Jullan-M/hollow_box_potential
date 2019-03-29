@@ -9,10 +9,27 @@ import matplotlib.pyplot as plt
 
 gradient = np.linspace(0, 1, 512)
 gradient = np.vstack((gradient, gradient))
-fig = plt.figure(figsize=(10, 2))
+
+plt.figure(figsize=(10, 2))
 plt.title('"Magma" colormap', fontsize=14)
 plt.imshow(gradient, aspect='auto', cmap=plt.get_cmap('magma'))
 plt.axis('off')
 plt.savefig('magma_colormap.pdf')
+
+plt.show()
+
+plt.figure(figsize=(10, 2))
+plt.title('"Plasma" colormap', fontsize=14)
+plt.imshow(gradient, aspect='auto', cmap=plt.get_cmap('viridis'))
+plt.axis('off')
+plt.savefig('viridis_colormap.pdf')
+
+plt.show()
+
+plt.figure(figsize=(10, 2))
+plt.title('"Winter" colormap', fontsize=14)
+plt.imshow(gradient, aspect='auto', cmap=plt.get_cmap('winter'))
+plt.axis('off')
+plt.savefig('winter_colormap.pdf')
 
 plt.show()
